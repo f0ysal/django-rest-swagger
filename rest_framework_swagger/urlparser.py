@@ -114,7 +114,10 @@ class UrlParser(object):
 
         if self.__exclude_format_endpoints__(path):
             return
-
+        
+        if self.__exclude_endpoints__(path):
+            return
+                
         return {
             'path': path,
             'pattern': pattern,
@@ -189,5 +192,18 @@ class UrlParser(object):
         """
         if '.{format}' in path:
             return True
+
+        return False
+
+    def __exclude_endpoints__(self, path):
+        """
+        Excludes URL patterns that exists in exclude_endpoints list
+        """
+        exclude_endpoints=SWAGGER_SETTINGS.get('exclude_endpoints')
+        try:
+            if path in exclude_endpoints:
+                return True
+        except KeyError:
+            pass
 
         return False
