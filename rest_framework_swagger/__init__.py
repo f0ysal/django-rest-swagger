@@ -2,6 +2,7 @@ VERSION = '0.2.8'
 
 DEFAULT_SWAGGER_SETTINGS = {
     'exclude_namespaces': [],
+    'exclude_endpoints': [],
     'api_version': '',
     'api_path': '/',
     'api_key': '',
