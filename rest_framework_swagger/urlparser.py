@@ -7,6 +7,8 @@ from django.contrib.admindocs.views import simplify_regex
 
 from rest_framework.views import APIView
 
+from rest_framework_swagger import SWAGGER_SETTINGS
+
 from .apidocview import APIDocView
 
 
