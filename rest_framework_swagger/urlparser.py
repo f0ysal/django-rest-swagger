@@ -13,7 +13,6 @@ from .apidocview import APIDocView
 
 
 class UrlParser(object):
-
     def get_apis(self, patterns=None, urlconf=None, filter_path=None, exclude_namespaces=[]):
         """
         Returns all the DRF APIViews found in the project URLs
@@ -60,7 +59,7 @@ class UrlParser(object):
         api_paths = [endpoint['path'].strip("/") for endpoint in apis]
 
         for path in api_paths:
-            #  If a URLs /resource/ and /resource/{pk} exist, use the base
+            # If a URLs /resource/ and /resource/{pk} exist, use the base
             #  as the resource. If there is no base resource URL, then include
             path_base = path.split('/{')[0]
             if '{' in path and path_base in api_paths:
@@ -116,10 +115,10 @@ class UrlParser(object):
 
         if self.__exclude_format_endpoints__(path):
             return
-        
+
         if self.__exclude_endpoints__(path):
             return
-                
+
         return {
             'path': path,
             'pattern': pattern,
@@ -174,8 +173,8 @@ class UrlParser(object):
             return pattern.callback.cls
 
         elif (hasattr(pattern.callback, 'cls_instance') and
-                isinstance(pattern.callback.cls_instance, APIView) and
-                not issubclass(pattern.callback.cls_instance, APIDocView)):
+                  isinstance(pattern.callback.cls_instance, APIView) and
+                  not issubclass(pattern.callback.cls_instance, APIDocView)):
 
             return pattern.callback.cls_instance
 
@@ -201,7 +200,7 @@ class UrlParser(object):
         """
         Excludes URL patterns that exists in exclude_endpoints list
         """
-        exclude_endpoints=SWAGGER_SETTINGS.get('exclude_endpoints')
+        exclude_endpoints = SWAGGER_SETTINGS.get('exclude_endpoints')
         try:
             if path in exclude_endpoints:
                 return True
