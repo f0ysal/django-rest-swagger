@@ -60,7 +60,7 @@ class UrlParser(object):
 
         for path in api_paths:
             # If a URLs /resource/ and /resource/{pk} exist, use the base
-            #  as the resource. If there is no base resource URL, then include
+            # as the resource. If there is no base resource URL, then include
             path_base = path.split('/{')[0]
             if '{' in path and path_base in api_paths:
                 continue
@@ -166,15 +166,14 @@ class UrlParser(object):
         if not hasattr(pattern, 'callback'):
             return
 
-        if (hasattr(pattern.callback, 'cls') and
-                issubclass(pattern.callback.cls, APIView) and
-                not issubclass(pattern.callback.cls, APIDocView)):
+        if hasattr(pattern.callback, 'cls') and issubclass(pattern.callback.cls, APIView) and not issubclass(
+                pattern.callback.cls, APIDocView):
 
             return pattern.callback.cls
 
-        elif (hasattr(pattern.callback, 'cls_instance') and
-                  isinstance(pattern.callback.cls_instance, APIView) and
-                  not issubclass(pattern.callback.cls_instance, APIDocView)):
+        elif hasattr(pattern.callback, 'cls_instance') and isinstance(pattern.callback.cls_instance,
+                                                                      APIView) and not issubclass(
+                pattern.callback.cls_instance, APIDocView):
 
             return pattern.callback.cls_instance
 
